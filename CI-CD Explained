@@ -24,4 +24,3 @@ Job-3: deploy to k8s master
 
 cd $WORKSPACE
 kubectl apply -f "addressbook-k8s-deploy.yml"
-
