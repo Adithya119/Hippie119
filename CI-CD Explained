@@ -1,0 +1,27 @@
+Job-1: Package           
+
+------- Job-1 configure tab ---------         # you are creating your image using a Docker File
+
+cd $WORKSPACE
+docker build -f Dockerfile -t adithya119/addressbook .
+
+--------- #cat Dockerfile -----------         # tomcat image is pulled; .war file from Dev Team.
+FROM tomcat
+ADD target/addressbook.war /usr/local/tomcat/webapps
+EXPOSE 8080
+CMD /usr/local/tomcat/bin/catalina.sh run
+
+-------------------------------------------------------------------------------------
+
+Job-2: Push to docker hub
+
+docker login -u adithya119 -p Adithya1!
+docker push adithya119/addressbook
+
+-------------------------------------------------------------------------------------
+
+Job-3: deploy to k8s master
+
+cd $WORKSPACE
+kubectl apply -f "addressbook-k8s-deploy.yml"
+
